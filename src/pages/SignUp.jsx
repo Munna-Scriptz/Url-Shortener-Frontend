@@ -1,5 +1,6 @@
 import React from 'react';
 import { Scissors, Mail, Lock, User, Github, ArrowRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router';
 
 const SignUp = () => {
     return (
@@ -97,7 +98,7 @@ const SignUp = () => {
 
                             {/* Footer Link */}
                             <p className="text-center mt-8 text-slate-500 text-sm">
-                                Already have an account? <span className="text-Secondary font-bold cursor-pointer hover:underline">Sign In</span>
+                                Already have an account? <Link to={'/sign-in'} className="text-Secondary font-bold cursor-pointer hover:underline">Sign In</Link>
                             </p>
                         </div>
 
