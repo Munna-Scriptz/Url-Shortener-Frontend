@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Copy, Link, ArrowRight, BarChart, QrCode, CheckCircle, Sparkles } from 'lucide-react';
+import Button from '../ui/Buttons';
 
 const Hero = () => {
     const [longUrl, setLongUrl] = useState('');
@@ -64,7 +65,8 @@ const Hero = () => {
                                             onChange={(e) => setLongUrl(e.target.value)}
                                         />
                                     </div>
-                                    <button
+                                    <Button
+                                        variant='none'
                                         onClick={handleShorten}
                                         disabled={isLoading}
                                         className="w-full md:w-auto px-8 h-12 rounded-xl bg-white text-slate-950 font-bold hover:bg-slate-200 transition-colors flex items-center justify-center gap-2 relative"
@@ -74,7 +76,7 @@ const Hero = () => {
                                         ) : (
                                             <>Shorten <ArrowRight size={18} /></>
                                         )}
-                                    </button>
+                                    </Button>
                                 </div>
                             </div>
 
@@ -100,22 +102,24 @@ const Hero = () => {
                                                         {shortUrl}
                                                     </span>
 
-                                                    <button
+                                                    <Button
+                                                        size='sm'
+                                                        variant='success'
                                                         onClick={handleCopy}
                                                         className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${isCopied ? 'bg-green-500/20 text-green-400' : 'bg-white/10 hover:bg-white/20 text-white'}`}
                                                     >
                                                         {isCopied ? <CheckCircle size={16} /> : <Copy size={16} />}
                                                         {isCopied ? 'Copied!' : 'Copy'}
-                                                    </button>
+                                                    </Button>
                                                 </div>
 
                                                 <div className="grid grid-cols-2 gap-3 mt-2">
-                                                    <button className="py-2.5 rounded-lg bg-violet-500/10 text-violet-300 text-xs font-bold hover:bg-violet-500/20 transition-colors flex items-center justify-center gap-2">
+                                                    <Button variant='none' className="py-2.5 rounded-lg bg-violet-500/10 text-violet-300 text-xs font-bold hover:bg-violet-500/20 transition-colors flex items-center justify-center gap-2">
                                                         <QrCode size={14} /> Get QR Code
-                                                    </button>
-                                                    <button className="py-2.5 rounded-lg bg-fuchsia-500/10 text-fuchsia-300 text-xs font-bold hover:bg-fuchsia-500/20 transition-colors flex items-center justify-center gap-2">
+                                                    </Button>
+                                                    <Button variant='none' className="py-2.5 rounded-lg bg-fuchsia-500/10 text-fuchsia-300 text-xs font-bold hover:bg-fuchsia-500/20 transition-colors flex items-center justify-center gap-2">
                                                         <BarChart size={14} /> View Stats
-                                                    </button>
+                                                    </Button>
                                                 </div>
                                             </div>
                                         </div>
