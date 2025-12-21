@@ -1,6 +1,8 @@
 import React from 'react';
 import { Scissors, Mail, Lock, LogIn, Github, ArrowRight, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router';
+import Input from '../components/ui/Input';
+import Button from '../components/ui/Buttons';
 
 const SignIn = () => {
     return (
@@ -36,33 +38,22 @@ const SignIn = () => {
                                 <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
 
                                     {/* Email Field */}
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1">Email</label>
-                                        <div className="relative group">
-                                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within:text-brand transition-colors" size={18} />
-                                            <input
-                                                type="email"
-                                                placeholder="shadow@snipit.com"
-                                                className="w-full bg-black/40 border border-white/5 rounded-xl py-4 pl-12 pr-4 outline-none focus:border-brand/50 focus:bg-black/60 transition-all text-sm placeholder:text-slate-700"
-                                            />
-                                        </div>
-                                    </div>
+                                    <Input
+                                        leftIcon={<Mail size={18} />}
+                                        label={'Email Address'}
+                                        variant='signUp'
+                                        type="email"
+                                        placeholder="hello@example.com"
+                                    />
 
                                     {/* Password Field */}
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between items-center px-1">
-                                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">password</label>
-                                            <span className="text-[10px] font-bold text-brand cursor-pointer hover:text-Secondary transition-colors">Forgot?</span>
-                                        </div>
-                                        <div className="relative group">
-                                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within:text-brand transition-colors" size={18} />
-                                            <input
-                                                type="password"
-                                                placeholder="••••••••"
-                                                className="w-full bg-black/40 border border-white/5 rounded-xl py-4 pl-12 pr-4 outline-none focus:border-brand/50 focus:bg-black/60 transition-all text-sm placeholder:text-slate-700"
-                                            />
-                                        </div>
-                                    </div>
+                                    <Input
+                                        leftIcon={<Lock size={18} />}
+                                        label={'Password'}
+                                        variant='signUp'
+                                        type="password"
+                                        placeholder="••••••••"
+                                    />
 
                                     {/* Remember Me Toggle */}
                                     <div className="flex items-center gap-2 px-1">
@@ -71,9 +62,9 @@ const SignIn = () => {
                                     </div>
 
                                     {/* Sign In Button */}
-                                    <button className="w-full py-4 cursor-pointer bg-white text-slate-950 rounded-xl font-black text-sm hover:bg-brand hover:text-white active:scale-[0.96] transition-all duration-300 flex items-center justify-center gap-2 group">
+                                    <Button variant='sinInAndSignUpWhite'>
                                         Log In to SnipIt <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </button>
+                                    </Button>
                                 </form>
 
                                 {/* Social Auth */}

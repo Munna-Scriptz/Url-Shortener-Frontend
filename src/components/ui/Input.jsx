@@ -1,0 +1,84 @@
+import React, { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+
+const Input = ({
+    label,
+    required,
+    error,
+    helperText,
+    leftIcon,
+    type = 'text',
+    id,
+    variant = 'primary', // Default matches button
+    size = 'md',
+    className = '',
+    ...props
+}) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const isPassword = type === 'password';
+    const currentType = isPassword ? (showPassword ? 'text' : 'password') : type;
+
+    // 1. Base styles
+    const baseStyles = "w-full transition-all duration-200 outline-none flex items-center";
+
+    // 2. Variants (Synced with your Button colors!)
+    const variants = {
+        primary: "bg-indigo-600/5 border-indigo-600/20 text-indigo-900 focus:border-indigo-600 focus:bg-white",
+        secondary: "bg-emerald-500/5 border-emerald-500/20 text-emerald-900 focus:border-emerald-600 focus:bg-white",
+        signUp: "w-full bg-black/20 border border-white/5 rounded-xl py-3.5 pl-12 pr-4 outline-none focus:border-brand/50 text-sm",
+        ghost: "bg-transparent border-transparent border-b-slate-700 text-slate-300 focus:text-white focus:border-b-white",
+        danger: "bg-rose-500/5 border-rose-500/20 text-rose-900 focus:border-rose-600 focus:bg-white",
+        success: "bg-green-500/10 border-green-500/20 text-green-400 focus:border-green-500",
+    };
+
+    // 3. Sizes
+    const sizes = {
+        sm: "text-xs px-3 py-1.5 rounded-md",
+        md: "text-sm px-5 py-2.5 rounded-lg",
+        lg: "text-base px-8 py-3.5 rounded-xl",
+    };
+
+    return (
+        <div className="flex flex-col gap-1.5 w-full group">
+            {label && (
+                <label htmlFor={id} className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
+                    {label}
+                </label>
+            )}
+
+            <div className="relative flex items-center">
+                {leftIcon && (
+                    <div className="absolute left-4 text-slate-500 group-focus-within:text-brand transition-colors" >
+                        {leftIcon}
+                    </div>
+                )}
+
+                <input
+                    id={id}
+                    type={currentType}
+                    required
+                    className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${leftIcon ? 'pl-11' : ''} ${isPassword ? 'pr-11' : ''} ${className}`}
+                    {...props}
+                />
+
+                {isPassword && (
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3.5 text-slate-400 hover:text-white transition-colors focus:outline-none cursor-pointer"
+                    >
+                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                )}
+            </div>
+
+            {error ? (
+                <p className="text-xs font-medium text-rose-500">{error}</p>
+            ) : helperText ? (
+                <p className="text-xs text-slate-500">{helperText}</p>
+            ) : null}
+        </div>
+    );
+};
+
+export default Input;

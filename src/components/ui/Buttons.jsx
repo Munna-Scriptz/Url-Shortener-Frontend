@@ -20,6 +20,8 @@ const Button = ({
         primary: "bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500 shadow-sm",
         secondary: "bg-emerald-500 text-white hover:bg-emerald-600 focus:ring-emerald-400",
         signUp: "bg-transparent text-white",
+        sinInAndSignUp: "w-full py-4 bg-linear-to-r from-brand to-Secondary font-bold text-sm hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-violet-500/20 flex items-center justify-center gap-2",
+        sinInAndSignUpWhite: "w-full py-4 cursor-pointer bg-white text-slate-950 rounded-xl font-black text-sm hover:bg-brand hover:text-white active:scale-[0.96] transition-all duration-300 flex items-center justify-center gap-2 group",
         ghost: "bg-transparent text-slate-300 hover:text-white",
         danger: "bg-rose-500 text-white hover:bg-rose-600 focus:ring-rose-400",
         success: "bg-green-500/20 text-green-400",

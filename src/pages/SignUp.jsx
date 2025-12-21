@@ -1,6 +1,8 @@
 import React from 'react';
 import { Scissors, Mail, Lock, User, Github, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router';
+import Input from '../components/ui/Input';
+import Button from '../components/ui/Buttons';
 
 const SignUp = () => {
     return (
@@ -8,7 +10,6 @@ const SignUp = () => {
             <main id='sign-Up' className='py-15'>
                 <div className="container">
                     <div id="sign-Up-Row" className="min-h-screen text-white font-sans selection:bg-Secondary overflow-hidden relative flex items-center justify-center px-4">
-
 
                         {/* --- REUSE THE DECORATIONS FROM HOME --- */}
                         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -22,8 +23,12 @@ const SignUp = () => {
 
                             {/* Logo Section */}
                             <div className="flex flex-col items-center mb-8">
-                                <div className="p-3 bg-linear-to-br from-brand to-Secondary rounded-2xl shadow-lg mb-4">
-                                    <Scissors className="text-white" size={28} />
+                                <div className="flex items-center gap-2 text-2xl font-bold tracking-tighter cursor-pointer group">
+                                    <div
+                                        className="p-2 bg-linear-to-br from-violet-600 to-fuchsia-600 rounded-lg shadow-lg shadow-violet-500/20"
+                                    >
+                                        <Scissors className="text-white" size={24} />
+                                    </div>
                                 </div>
                                 <h1 className="text-3xl font-black tracking-tight">Join <span className="text-Secondary">SnipIt.</span></h1>
                                 <p className="text-slate-400 mt-2 text-sm">Start creating aesthetic links today.</p>
@@ -34,48 +39,36 @@ const SignUp = () => {
                                 <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
 
                                     {/* Name Input */}
-                                    <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
-                                        <div className="relative group">
-                                            <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-brand transition-colors" size={18} />
-                                            <input
-                                                type="text"
-                                                placeholder="Munna Shadow"
-                                                className="w-full bg-black/20 border border-white/5 rounded-xl py-3.5 pl-12 pr-4 outline-none focus:border-brand/50 transition-all text-sm"
-                                            />
-                                        </div>
-                                    </div>
+                                    <Input
+                                        leftIcon={<User size={18} />}
+                                        label={'Full Name'}
+                                        variant='signUp'
+                                        type="text"
+                                        placeholder="Munna"
+                                    />
 
                                     {/* Email Input */}
-                                    <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Email Address</label>
-                                        <div className="relative group">
-                                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-brand transition-colors" size={18} />
-                                            <input
-                                                type="email"
-                                                placeholder="hello@example.com"
-                                                className="w-full bg-black/20 border border-white/5 rounded-xl py-3.5 pl-12 pr-4 outline-none focus:border-brand/50 transition-all text-sm"
-                                            />
-                                        </div>
-                                    </div>
+                                    <Input
+                                        leftIcon={<Mail size={18} />}
+                                        label={'Email Address'}
+                                        variant='signUp'
+                                        type="email"
+                                        placeholder="hello@example.com"
+                                    />
 
                                     {/* Password Input */}
-                                    <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Password</label>
-                                        <div className="relative group">
-                                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-brand transition-colors" size={18} />
-                                            <input
-                                                type="password"
-                                                placeholder="••••••••"
-                                                className="w-full bg-black/20 border border-white/5 rounded-xl py-3.5 pl-12 pr-4 outline-none focus:border-brand/50 transition-all text-sm"
-                                            />
-                                        </div>
-                                    </div>
+                                    <Input
+                                        leftIcon={<Lock size={18} />}
+                                        label={'Password'}
+                                        variant='signUp'
+                                        type="password"
+                                        placeholder="••••••••"
+                                    />
 
                                     {/* Submit Button */}
-                                    <button className="w-full py-4 bg-linear-to-r from-brand to-Secondary rounded-xl font-bold text-sm hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-violet-500/20 flex items-center justify-center gap-2">
+                                    <Button variant='sinInAndSignUp'>
                                         Create Account <ArrowRight size={18} />
-                                    </button>
+                                    </Button>
                                 </form>
 
                                 {/* Divider */}
