@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Copy, Link, ArrowRight, BarChart, QrCode, CheckCircle, Sparkles } from 'lucide-react';
 import Button from '../ui/Buttons';
+import { urlServices } from '../../api';
 
 const Hero = () => {
     const [longUrl, setLongUrl] = useState('');
@@ -8,15 +9,26 @@ const Hero = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
 
-    const handleShorten = () => {
+    const handleShorten = async () => {
         if (!longUrl) return;
-        setIsLoading(true);
-        setShortUrl('');
+        // ------------------- Api Call ---------------
+        try {
+            const res = await urlServices.createUrl(longUrl)
+            console.log(res.shortUrl)
 
-        setTimeout(() => {
-            setShortUrl(`shrt.ly/${Math.random().toString(36).substr(2, 6)}`);
-            setIsLoading(false);
-        }, 1200);
+            setIsLoading(true);
+    
+    
+    
+            setTimeout(() => {
+                setShortUrl(`http://localhost:8000/${res.shortUrl}`);
+                setIsLoading(false);
+            }, 1200);
+
+        } catch (error) {
+            console.log(error)
+        }
+
     };
 
     const handleCopy = () => {
@@ -84,7 +96,7 @@ const Hero = () => {
                             <div>
                                 {shortUrl && (
                                     <div
-                                        className="mt-10 w-full max-w-lg z-20"
+                                        className="mt-10 w-[600px] z-20"
                                     >
                                         <div className="relative p-0.5 rounded-2xl bg-linear-to-r from-violet-500/50 to-fuchsia-500/50">
                                             <div className="bg-slate-900/95 backdrop-blur-xl p-6 rounded-2xl flex flex-col gap-4 text-left shadow-2xl shadow-violet-900/20">
@@ -98,9 +110,9 @@ const Hero = () => {
                                                 </div>
 
                                                 <div className="flex items-center justify-between bg-black/40 p-4 rounded-xl border border-white/5 group hover:border-violet-500/30 transition-colors">
-                                                    <span className="text-xl font-mono text-fuchsia-300 font-medium tracking-tight truncate mr-4">
+                                                    <a href={shortUrl} target='_blank' className="text-xl font-mono text-fuchsia-300 font-medium tracking-tight truncate mr-4">
                                                         {shortUrl}
-                                                    </span>
+                                                    </a>
 
                                                     <Button
                                                         size='sm'

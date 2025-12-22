@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: "https://your-api-base-url.com/api",
+    baseURL: "http://localhost:8000/",
     headers: {
         "Content-Type": "application/json",
     },
@@ -35,19 +35,17 @@ const authServices = () => {
     }
 }
 
-const urlServices = () => {
+const urlServices = {
     createUrl: async (longUrl) => {
-        const res = await api.post('/url/create', { longUrl })
+        const res = await api.post('/url/shortener', { longUrl })
         return res.data
-    }
+    },
 
     allUrls: async () => {
-        const res = await api.get('/url/allUrls')
+        const res = await api.get('/url/url-history')
         return res.data
     }
 }
 
 
-
-
-export default { authServices, urlServices };
+export { authServices, urlServices };
