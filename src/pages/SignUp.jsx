@@ -1,29 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Scissors, Mail, Lock, User, Github, ArrowRight, Sparkles } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Buttons';
 import { useForm } from "react-hook-form"
 import { authServices } from '../api';
+import { Bounce, toast } from 'react-toastify';
 
 const SignUp = () => {
+    const navigate = useNavigate()
     // ------------------- Form Handlers 
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm()
+
     const onSubmit = async (registrationData) => {
         try {
             const res = await authServices.registration(registrationData)
             console.log(res)
+            toast.success(`Registration Successful!`, { theme: "dark", transition: Bounce, });
 
-
-
+            setTimeout(() => {
+                navigate('/sign-in')
+            }, 4000);
         } catch (error) {
             console.log(error)
         }
-        console.log(registrationData)
     }
 
     return (
@@ -92,7 +96,12 @@ const SignUp = () => {
 
                                     {/* Submit Button */}
                                     <Button variant='sinInAndSignUp'>
-                                        Create Account <ArrowRight size={18} />
+                                        {isSubmitting ? (
+                                            <div className="w-5 h-5 border-2 border-gray-200 border-t-transparent rounded-full animate-spin"></div>
+                                        ) : (
+                                            <>Create Account <ArrowRight size={18} /></>
+                                        )}
+                                        
                                     </Button>
                                 </form>
 
