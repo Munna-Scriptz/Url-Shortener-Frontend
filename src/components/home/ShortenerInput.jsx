@@ -14,33 +14,24 @@ const ShortenerInput = () => {
 
     // -------------------- Handle Shortener ------------------
     const handleShorten = async () => {
-        if (!longUrl) return setErrorMessage('please enter your url') ;
-        // ------------------- Api Call
+        if (!longUrl) return setErrorMessage('please enter your url');
         try {
+            // ------------------- Api Call
             const res = await urlServices.createUrl(longUrl)
             setIsLoading(true);
 
             setTimeout(() => {
                 setShortUrl(`http://localhost:8000/${res.shortUrl}`);
                 setIsLoading(false);
+                toast.success(`Url Created Successfully!`, { theme: "dark", transition: Bounce, });
             }, 1200);
 
         } catch (error) {
             console.log(error)
             setErrorMessage(error.response.data)
-
+            setShortUrl('')
             // --------------- Toaster 
-            toast.error(`Oops! ${error.response.data}`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Bounce,
-            });
+            toast.error(`Oops! ${error.response.data}`, { theme: "dark", transition: Bounce, });
         }
 
     };
@@ -59,7 +50,7 @@ const ShortenerInput = () => {
                             placeholder="Paste your insanely long URL here..."
                             className="bg-transparent border-none outline-none text-white w-full placeholder-slate-600 h-full text-lg"
                             value={longUrl}
-                            onChange={(e) =>{ setLongUrl(e.target.value), setErrorMessage('')}}
+                            onChange={(e) => { setLongUrl(e.target.value), setErrorMessage('') }}
                         />
                     </div>
                     <Button
@@ -76,7 +67,7 @@ const ShortenerInput = () => {
                     </Button>
                 </div>
 
-                <div className={`${errorMessage? '' : 'hidden'} absolute -bottom-15 w-full flex justify-center px-2`}>
+                <div className={`${errorMessage ? '' : 'hidden'} absolute -bottom-15 w-full flex justify-center px-2`}>
                     <div className="animate-error flex items-center gap-3 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 backdrop-blur-md shadow-[0_0_20px_rgba(239,68,68,0.1)]">
                         {/* Glowing Dot */}
                         <div className="relative flex h-2 w-2">

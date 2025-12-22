@@ -11,10 +11,11 @@ const ShortenerReveal = ({ shortUrl, setIsCopied, isCopied }) => {
     };
 
     return (
-        <div>
+        <>
             {shortUrl && (
                 <div
-                    className="mt-10 w-150 z-20"
+                    key={shortUrl}
+                    className="mt-10 w-150 z-20 animate-reveal"
                 >
                     <div className="relative p-0.5 rounded-2xl bg-linear-to-r from-violet-500/50 to-fuchsia-500/50">
                         <div className="bg-slate-900/95 backdrop-blur-xl p-6 rounded-2xl flex flex-col gap-4 text-left shadow-2xl shadow-violet-900/20">
@@ -34,7 +35,7 @@ const ShortenerReveal = ({ shortUrl, setIsCopied, isCopied }) => {
 
                                 <Button
                                     size='sm'
-                                    variant='success'
+                                    variant='Link shortened success'
                                     onClick={handleCopy}
                                     className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${isCopied ? 'bg-green-500/20 text-green-400' : 'bg-white/10 hover:bg-white/20 text-white'}`}
                                 >
@@ -55,7 +56,7 @@ const ShortenerReveal = ({ shortUrl, setIsCopied, isCopied }) => {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     )
 }
 
