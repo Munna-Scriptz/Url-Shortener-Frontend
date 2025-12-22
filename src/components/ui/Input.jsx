@@ -3,7 +3,6 @@ import { Eye, EyeOff } from 'lucide-react';
 
 const Input = ({
     label,
-    required,
     error,
     helperText,
     leftIcon,
@@ -41,8 +40,17 @@ const Input = ({
     return (
         <div className="flex flex-col gap-1.5 w-full group">
             {label && (
-                <label htmlFor={id} className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
-                    {label}
+                <label
+                    htmlFor={id}
+                    className={`text-xs font-bold uppercase tracking-widest duration-300 ${error ? 'text-rose-500 animate-pulse' : 'text-slate-500'}`}
+                >
+                    {/* If there's an error, show it here; otherwise show the label */}
+                    {error ? (
+                        <span className="flex items-center gap-1.5">
+                            <span className="h-1 w-1 bg-rose-500 rounded-full shadow-[0_0_8px_#f43f5e]"></span>
+                            {error}
+                        </span>
+                    ) : label}
                 </label>
             )}
 
@@ -56,7 +64,7 @@ const Input = ({
                 <input
                     id={id}
                     type={currentType}
-                    required
+            
                     className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${leftIcon ? 'pl-11' : ''} ${isPassword ? 'pr-11' : ''} ${className}`}
                     {...props}
                 />
@@ -72,9 +80,7 @@ const Input = ({
                 )}
             </div>
 
-            {error ? (
-                <p className="text-xs font-medium text-rose-500">{error}</p>
-            ) : helperText ? (
+            {helperText ? (
                 <p className="text-xs text-slate-500">{helperText}</p>
             ) : null}
         </div>

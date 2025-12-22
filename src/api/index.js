@@ -18,16 +18,16 @@ api.interceptors.request.use(
 );
 
 // ========================== APi Calls ================================
-const authServices = () => {
-    registration: async (email, password) => {
-        const res = await api.post('/auth/registration', { fullname, email, password })
+const authServices = {
+    registration: async (registrationData) => {
+        const res = await api.post('/auth/register', registrationData)
         return res.data
-    }
+    },
 
     login: async (email, password) => {
         const res = await api.post('/auth/login', { email, password })
         return res.data
-    }
+    },
 
     getProfile: async () => {
         const res = await api.get('/auth/getProfile')

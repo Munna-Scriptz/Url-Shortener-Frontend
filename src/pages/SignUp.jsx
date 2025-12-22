@@ -3,8 +3,29 @@ import { Scissors, Mail, Lock, User, Github, ArrowRight, Sparkles } from 'lucide
 import { Link } from 'react-router';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Buttons';
+import { useForm } from "react-hook-form"
+import { authServices } from '../api';
 
 const SignUp = () => {
+    // ------------------- Form Handlers 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm()
+    const onSubmit = async (registrationData) => {
+        try {
+            const res = await authServices.registration(registrationData)
+            console.log(res)
+
+
+
+        } catch (error) {
+            console.log(error)
+        }
+        console.log(registrationData)
+    }
+
     return (
         <>
             <main id='sign-Up' className='py-15'>
@@ -36,12 +57,14 @@ const SignUp = () => {
 
                             {/* The Glass Card */}
                             <div className="bg-primarySurface/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl">
-                                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                                <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
 
                                     {/* Name Input */}
                                     <Input
                                         leftIcon={<User size={18} />}
                                         label={'Full Name'}
+                                        {...register("fullname", { required: 'Fullname Is Required' })}
+                                        error={''}
                                         variant='signUp'
                                         type="text"
                                         placeholder="Munna"
@@ -51,6 +74,7 @@ const SignUp = () => {
                                     <Input
                                         leftIcon={<Mail size={18} />}
                                         label={'Email Address'}
+                                        {...register("email", { required: 'Email Is Required' })}
                                         variant='signUp'
                                         type="email"
                                         placeholder="hello@example.com"
@@ -60,6 +84,7 @@ const SignUp = () => {
                                     <Input
                                         leftIcon={<Lock size={18} />}
                                         label={'Password'}
+                                        {...register("password", { required: 'Password Is Required' })}
                                         variant='signUp'
                                         type="password"
                                         placeholder="••••••••"
