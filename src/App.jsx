@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router'
+import { ToastContainer } from 'react-toastify';
 import LayoutOne from './layout/LayoutOne'
 import Home from './pages/Home'
 import SignUp from './pages/SignUp'
@@ -19,7 +20,10 @@ const App = () => {
 
 
   return (
-    <RouterProvider router={MyRoute} />
+    <>
+      <RouterProvider router={MyRoute} />
+      <ToastContainer />
+    </>
   )
 }
 
