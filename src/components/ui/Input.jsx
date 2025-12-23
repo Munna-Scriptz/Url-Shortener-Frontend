@@ -19,6 +19,8 @@ const Input = ({
 
     // 1. Base styles
     const baseStyles = "w-full transition-all duration-200 outline-none flex items-center";
+    const errorBase = `w-full bg-black/20 border border-red-500 rounded-xl py-3.5 pl-12 pr-4 outline-none text-sm animate-shake`;
+
 
     // 2. Variants (Synced with your Button colors!)
     const variants = {
@@ -42,12 +44,12 @@ const Input = ({
             {label && (
                 <label
                     htmlFor={id}
-                    className={`text-xs font-bold uppercase tracking-widest duration-300 ${error ? 'text-rose-500 animate-pulse' : 'text-slate-500'}`}
+                    className={`text-xs font-bold uppercase tracking-widest duration-300 ${error ? 'text-red-500 animate-pulse' : 'text-slate-500'}`}
                 >
                     {/* If there's an error, show it here; otherwise show the label */}
                     {error ? (
                         <span className="flex items-center gap-1.5">
-                            <span className="h-1 w-1 bg-rose-500 rounded-full shadow-[0_0_8px_#f43f5e]"></span>
+                            <span className="h-1 w-1 bg-red-500 rounded-full shadow-[0_0_8px_#f43f5e]"></span>
                             {error}
                         </span>
                     ) : label}
@@ -64,8 +66,7 @@ const Input = ({
                 <input
                     id={id}
                     type={currentType}
-            
-                    className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${leftIcon ? 'pl-11' : ''} ${isPassword ? 'pr-11' : ''} ${className}`}
+                    className={`${baseStyles} ${error ? errorBase : `${variants[variant]} ${sizes[size]}`} ${leftIcon ? 'pl-11' : ''} ${isPassword ? 'pr-11' : ''} ${className}`}
                     {...props}
                 />
 

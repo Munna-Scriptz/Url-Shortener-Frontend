@@ -15,7 +15,7 @@ const SignUp = () => {
     const {
         register,
         handleSubmit,
-        formState: { isSubmitting },
+        formState: { errors, isSubmitting },
     } = useForm()
 
     const onSubmit = async (registrationData) => {
@@ -72,7 +72,7 @@ const SignUp = () => {
                                         leftIcon={<User size={18} />}
                                         label={'Full Name'}
                                         {...register("fullname", { required: 'Fullname Is Required', onChange: () => setApiError('') })}
-                                        error={''}
+                                        error={errors?.fullname?.message}
                                         variant='signUp'
                                         type="text"
                                         placeholder="Munna"
@@ -83,6 +83,7 @@ const SignUp = () => {
                                         leftIcon={<Mail size={18} />}
                                         label={'Email Address'}
                                         {...register("email", { required: 'Email Is Required', onChange: () => setApiError('') })}
+                                        error={errors?.email?.message}
                                         variant='signUp'
                                         type="email"
                                         placeholder="hello@example.com"
@@ -93,6 +94,7 @@ const SignUp = () => {
                                         leftIcon={<Lock size={18} />}
                                         label={'Password'}
                                         {...register("password", { required: 'Password Is Required', onChange: () => setApiError('') })}
+                                        error={errors?.password?.message}
                                         variant='signUp'
                                         type="password"
                                         placeholder="••••••••"
