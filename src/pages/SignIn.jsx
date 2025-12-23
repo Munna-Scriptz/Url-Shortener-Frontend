@@ -1,10 +1,37 @@
-import React from 'react';
-import { Scissors, Mail, Lock, LogIn, Github, ArrowRight, ShieldCheck } from 'lucide-react';
-import { Link } from 'react-router';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Mail, Lock, LogIn, Github, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Link, useNavigate } from 'react-router';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Buttons';
+import { Bounce, toast } from 'react-toastify';
+import { authServices } from '../api';
+import ErrorUi from '../components/ui/ErrorUi';
 
 const SignIn = () => {
+    const navigate = useNavigate()
+    const [apiError, setApiError] = useState('')
+    // ------------------- Form Handlers 
+    const {
+        register,
+        handleSubmit,
+        formState: { isSubmitting },
+    } = useForm()
+
+    const onSubmit = async (loginData) => {
+        try {
+            const res = await authServices.login(loginData)
+            console.log(res)
+            toast.success(`Login Successful!`, { theme: "dark", transition: Bounce, });
+
+            setTimeout(() => {
+                navigate('/')
+            }, 4000);
+        } catch (error) {
+            console.log(error)
+            setApiError(error.response.data.message)
+        }
+    }
     return (
         <>
             <main id='content' className='py-15'>
@@ -34,13 +61,14 @@ const SignIn = () => {
                             <div className="bg-primarySurface/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
                                 {/* Subtle top light effect */}
                                 <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-brand to-transparent opacity-50"></div>
-
-                                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                                <ErrorUi errorMessage={apiError} />
+                                <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
 
                                     {/* Email Field */}
                                     <Input
                                         leftIcon={<Mail size={18} />}
                                         label={'Email Address'}
+                                        {...register("email", { required: 'Email Is Required', onChange: () => setApiError('') })}
                                         variant='signUp'
                                         type="email"
                                         placeholder="hello@example.com"
@@ -50,6 +78,7 @@ const SignIn = () => {
                                     <Input
                                         leftIcon={<Lock size={18} />}
                                         label={'Password'}
+                                        {...register("password", { required: 'Password Is Required', onChange: () => setApiError('') })}
                                         variant='signUp'
                                         type="password"
                                         placeholder="••••••••"
@@ -63,7 +92,11 @@ const SignIn = () => {
 
                                     {/* Sign In Button */}
                                     <Button variant='sinInAndSignUpWhite'>
-                                        Log In to SnipIt <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                        {isSubmitting ? (
+                                            <div className="w-5 h-5 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"></div>
+                                        ) : (
+                                            <>Log In to SnipIt <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/></>
+                                        )}
                                     </Button>
                                 </form>
 

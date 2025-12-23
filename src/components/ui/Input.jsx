@@ -8,7 +8,7 @@ const Input = ({
     leftIcon,
     type = 'text',
     id,
-    variant = 'primary', // Default matches button
+    variant = 'primary',
     size = 'md',
     className = '',
     ...props

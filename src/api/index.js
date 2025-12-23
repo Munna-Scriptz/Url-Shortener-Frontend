@@ -24,8 +24,8 @@ const authServices = {
         return res.data
     },
 
-    login: async (email, password) => {
-        const res = await api.post('/auth/login', { email, password })
+    login: async (loginData) => {
+        const res = await api.post('/auth/login', loginData)
         return res.data
     },
 

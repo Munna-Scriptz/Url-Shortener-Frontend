@@ -6,14 +6,16 @@ import Button from '../components/ui/Buttons';
 import { useForm } from "react-hook-form"
 import { authServices } from '../api';
 import { Bounce, toast } from 'react-toastify';
+import ErrorUi from '../components/ui/ErrorUi';
 
 const SignUp = () => {
     const navigate = useNavigate()
+    const [apiError, setApiError] = useState('')
     // ------------------- Form Handlers 
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting },
+        formState: { isSubmitting },
     } = useForm()
 
     const onSubmit = async (registrationData) => {
@@ -27,6 +29,7 @@ const SignUp = () => {
             }, 4000);
         } catch (error) {
             console.log(error)
+            setApiError(error.response.data.message)
         }
     }
 
@@ -60,14 +63,15 @@ const SignUp = () => {
                             </div>
 
                             {/* The Glass Card */}
-                            <div className="bg-primarySurface/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl">
+                            <div className="bg-primarySurface/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl relative">
+                                <ErrorUi errorMessage={apiError} />
                                 <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
 
                                     {/* Name Input */}
                                     <Input
                                         leftIcon={<User size={18} />}
                                         label={'Full Name'}
-                                        {...register("fullname", { required: 'Fullname Is Required' })}
+                                        {...register("fullname", { required: 'Fullname Is Required', onChange: () => setApiError('') })}
                                         error={''}
                                         variant='signUp'
                                         type="text"
@@ -78,7 +82,7 @@ const SignUp = () => {
                                     <Input
                                         leftIcon={<Mail size={18} />}
                                         label={'Email Address'}
-                                        {...register("email", { required: 'Email Is Required' })}
+                                        {...register("email", { required: 'Email Is Required', onChange: () => setApiError('') })}
                                         variant='signUp'
                                         type="email"
                                         placeholder="hello@example.com"
@@ -88,7 +92,7 @@ const SignUp = () => {
                                     <Input
                                         leftIcon={<Lock size={18} />}
                                         label={'Password'}
-                                        {...register("password", { required: 'Password Is Required' })}
+                                        {...register("password", { required: 'Password Is Required', onChange: () => setApiError('') })}
                                         variant='signUp'
                                         type="password"
                                         placeholder="••••••••"
@@ -101,7 +105,6 @@ const SignUp = () => {
                                         ) : (
                                             <>Create Account <ArrowRight size={18} /></>
                                         )}
-                                        
                                     </Button>
                                 </form>
 
