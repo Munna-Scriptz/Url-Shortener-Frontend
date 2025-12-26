@@ -6,14 +6,18 @@ import LayoutOne from './layout/LayoutOne'
 import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
+import LayoutTwo from './layout/LayoutTwo';
 
 const App = () => {
   const MyRoute = createBrowserRouter(createRoutesFromElements(
     <Route>
-      <Route path='/' element={<LayoutOne/>}>
+      <Route path='/' element={<LayoutOne />}>
         <Route index element={<Home />} />
-        <Route path='/sign-up' element={<SignUp />} />
+      </Route>
+
+      <Route path='/' element={<LayoutTwo />}>
         <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/sign-up' element={<SignUp />} />
       </Route>
     </Route>
   ))

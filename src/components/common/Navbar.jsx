@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Scissors } from 'lucide-react'
 import Button from '../ui/Buttons'
 import { Link } from 'react-router'
+import { authServices } from '../../api'
 
 const Navbar = () => {
+    const [user , setUser] = useState('')
+
+    const getUserHandler = async()=>{
+        const res = await authServices.getProfile()
+        console.log(res)
+    }
+
+    getUserHandler()
     return (
         <>
             <nav className="relative z-50 flex items-center justify-between px-6 md:px-12 py-6 backdrop-blur-md bg-slate-900/40 border-b border-white/5">

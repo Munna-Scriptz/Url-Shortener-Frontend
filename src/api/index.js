@@ -1,4 +1,5 @@
 import axios from "axios"
+import { getCookie } from "../utils/Services";
 
 const api = axios.create({
     baseURL: "http://localhost:8000/",
@@ -11,11 +12,14 @@ const api = axios.create({
 // request interceptor
 api.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem("token");
+        const token = getCookie('acc_token')
+        console.log(token)
         if (token) config.headers.Authorization = `${token}`;
         return config;
     },
-    (error) => Promise.reject(error)
+    (error) => {
+        console.log(error)
+    }
 );
 
 // ========================== APi Calls ================================
@@ -31,7 +35,7 @@ const authServices = {
     },
 
     getProfile: async () => {
-        const res = await api.get('/auth/getProfile')
+        const res = await api.get('/auth/profile')
         return res.data
     }
 }
