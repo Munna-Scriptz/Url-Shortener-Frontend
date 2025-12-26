@@ -47,11 +47,11 @@ const Navbar = () => {
                 {/* ------------------ Navigation ----------------  */}
 
                 <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                    {['Home', 'Dashboard', 'All URLs', 'History'].map((item) => (
-                        <a key={item} href="#" className="relative group hover:text-white transition-colors">
-                            {item}
+                    {[{name: 'Home', path: '/'}, {name: 'Dashboard', path: '/dashboard'}, {name: 'All Urls', path: '/urls'}, {name: 'History', path: '/history'}].map((item) => (
+                        <Link key={item} to={item.path} className="relative group hover:text-white transition-colors">
+                            {item.name}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-fuchsia-500 transition-all group-hover:w-full"></span>
-                        </a>
+                        </Link>
                     ))}
                 </div>
 

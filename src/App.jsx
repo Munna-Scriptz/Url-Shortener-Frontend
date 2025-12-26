@@ -7,12 +7,14 @@ import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
 import LayoutTwo from './layout/LayoutTwo';
+import Dashboard from './pages/Dashboard';
 
 const App = () => {
   const MyRoute = createBrowserRouter(createRoutesFromElements(
     <Route>
       <Route path='/' element={<LayoutOne />}>
         <Route index element={<Home />} />
+        <Route path='/dashboard' element={<Dashboard />} />
       </Route>
 
       <Route path='/' element={<LayoutTwo />}>
