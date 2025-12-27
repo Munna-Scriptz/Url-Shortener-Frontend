@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Scissors, User } from 'lucide-react'
+import { Scissors } from 'lucide-react'
 import Button from '../ui/Buttons'
 import { Link } from 'react-router'
 import { authServices } from '../../api'

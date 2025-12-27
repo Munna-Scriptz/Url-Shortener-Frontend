@@ -45,7 +45,7 @@ const urlServices = {
         return res.data
     },
 
-    allUrls: async () => {
+    urlHistory: async () => {
         const res = await api.get('/url/url-history')
         return res.data
     }
