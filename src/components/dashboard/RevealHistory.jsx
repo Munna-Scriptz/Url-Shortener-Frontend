@@ -1,7 +1,8 @@
 import React from 'react'
 import { MousePointer2, Globe, Calendar } from 'lucide-react';
 
-const RevealHistory = ({ showHistory }) => {
+const RevealHistory = ({ showHistory, item, createdAt }) => {
+
     return (
         <>
             {showHistory && (
@@ -25,20 +26,20 @@ const RevealHistory = ({ showHistory }) => {
 
                         <div className="p-5 rounded-2xl bg-white/5 border border-white/5 space-y-3">
                             <Calendar className="text-indigo-400" size={20} />
-                            <div className="text-2xl font-black">Aug 2025</div>
-                            <div className="text-[10px] uppercase text-slate-500 tracking-widest font-bold">Last Activity Spike</div>
+                            <div className="text-2xl font-black">{new Date(createdAt).toLocaleString()}</div>
+                            <div className="text-[10px] uppercase text-slate-500 tracking-widest font-bold">Url Created</div>
                         </div>
                     </div>
 
                     {/* Mini Mini Table for timeline */}
                     <div className="mt-8">
-                        <h4 className="text-[10px] font-black uppercase text-slate-600 tracking-[0.3em] mb-4 ml-1">Recent Access Log</h4>
+                        <h4 className="text-[10px] font-black uppercase text-slate-600 tracking-[0.3em] mb-4 ml-1">Recent Visit Log</h4>
                         <div className="space-y-2">
-                            {[1, 2, 3].map((item) => (
-                                <div key={item} className="flex items-center justify-between p-3 bg-white/2 rounded-lg border border-white/2 text-xs">
+                            {item.map((item , i) => (
+                                <div key={i} className="flex items-center justify-between p-3 bg-white/2 rounded-lg border border-white/2 text-xs">
                                     <span className="text-slate-400 font-mono">192.168.1.xxx</span>
                                     <span className="text-slate-500 italic">Dhaka, Bangladesh</span>
-                                    <span className="text-brand font-bold">Just now</span>
+                                    <span className="text-brand font-bold">{new Date(item.visitTime).toLocaleString()}</span>
                                 </div>
                             ))}
                         </div>

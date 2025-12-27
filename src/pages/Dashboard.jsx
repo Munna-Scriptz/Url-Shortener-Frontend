@@ -27,7 +27,6 @@ const Dashboard = () => {
     })()
   }, [])
 
-  console.log(links)
   return (
     <>
       {

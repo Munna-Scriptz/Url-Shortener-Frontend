@@ -6,3 +6,6 @@ export const getCookie = (name) => {
         }, {});
     return cookies[name];
 };
+
+
+

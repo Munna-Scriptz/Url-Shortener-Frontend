@@ -6,6 +6,24 @@ import RevealHistory from './RevealHistory';
 const SingleLinkCard = ({ item }) => {
     const [showHistory, setShowHistory] = useState(false);
 
+    const timeAgo = (date) => {
+        const seconds = Math.floor((Date.now() - new Date(date)) / 1000);
+
+        if (seconds < 60) return `${seconds}s ago`;
+        const minutes = Math.floor(seconds / 60);
+        if (minutes < 60) return `${minutes}m ago`;
+        const hours = Math.floor(minutes / 60);
+        if (hours < 24) return `${hours}h ago`;
+        const days = Math.floor(hours / 24);
+        return `${days}d ago`;
+    };
+
+    const latestVisitTime =
+        item.visitHistory.reduce(
+            (latest, curr) =>
+                new Date(curr.visitTime) > new Date(latest.visitTime) ? curr : latest
+        ).visitTime;
+
     return (
         <div className={`group relative bg-primarySurface/30 border border-white/5 rounded-2xl overflow-hidden duration-300 hover:bg-primarySurface/50 ${showHistory ? 'ring-1 ring-brand/50 bg-primarySurface/60' : ''}`}>
 
@@ -21,7 +39,7 @@ const SingleLinkCard = ({ item }) => {
                         <h4 className="text-sm font-bold text-slate-200 truncate pr-4">{item.longUrl}</h4>
                         <div className="flex items-center gap-2 mt-1">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Active • 2h ago</span>
+                            <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Active • {timeAgo(latestVisitTime)} </span>
                         </div>
                     </div>
                 </div>
@@ -76,7 +94,7 @@ const SingleLinkCard = ({ item }) => {
             {/* EXPANDABLE SECTION */}
             <div className={`border-t border-white/5 bg-black/20 ${showHistory ? 'content-expanded' : 'content-collapsed'}`}>
                 <div>
-                    <RevealHistory showHistory={showHistory} />
+                    <RevealHistory item={item.visitHistory} showHistory={showHistory} createdAt={item.createdAt} />
                 </div>
             </div>
         </div>
