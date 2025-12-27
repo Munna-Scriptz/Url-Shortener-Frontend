@@ -5,7 +5,7 @@ const RevealHistory = ({ showHistory }) => {
     return (
         <>
             {showHistory && (
-                <div className="bg-black/40 border-t border-white/5 animate-reveal p-8">
+                <div className="bg-black/40 border-t border-white/5 animate-reveal p-8 w-full">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {/* Stats Cards inside History */}
                         <div className="p-5 rounded-2xl bg-white/5 border border-white/5 space-y-3">
