@@ -36,7 +36,7 @@ const Dashboard = () => {
           <section id='Dashboard'>
             <div className="container">
               <div id="Dashboard-Row" className="min-h-screen text-white relative overflow-hidden py-10">
-                <DashHeader totalClicks={'1,238'} />
+                <DashHeader totalClicks={links} />
 
                 {/* --- main dashboard table --- */}
                 <DashTable links={links} />

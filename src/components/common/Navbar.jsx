@@ -47,7 +47,7 @@ const Navbar = () => {
                 {/* ------------------ Navigation ----------------  */}
 
                 <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                    {[{name: 'Home', path: '/'}, {name: 'Dashboard', path: '/dashboard'}, {name: 'All Urls', path: '/urls'}, {name: 'History', path: '/history'}].map((item , i) => (
+                    {[{name: 'Home', path: '/'}, {name: 'Dashboard', path: '/dashboard'}, {name: 'All Urls', path: '/dashboard'}, {name: 'History', path: '/dashboard'}].map((item , i) => (
                         <Link key={i} to={item.path} className="relative group hover:text-white transition-colors">
                             {item.name}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-fuchsia-500 transition-all group-hover:w-full"></span>
