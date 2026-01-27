@@ -16,7 +16,7 @@ const Instructions = () => {
                 <main id='Instructions'>
                     <div className="container">
                         <div id="Instructions-Row">
-                            <section className="relative z-10 max-w-6xl mx-auto px-6 py-20">
+                            <section className="relative z-10 max-w-6xl mx-auto py-20">
                                 <div className="flex items-center gap-3 mb-10">
                                     <div className="h-px flex-1 bg-linear-to-r from-transparent to-slate-800"></div>
                                     <span className="text-slate-500 text-sm font-bold uppercase tracking-widest">How It Works</span>

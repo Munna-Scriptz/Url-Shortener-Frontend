@@ -16,7 +16,7 @@ const Hero = () => {
                                 <span>New: AI-Powered Analytics</span>
                             </div>
 
-                            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight animate-text-glow">
+                            <h1 className="text-[40px] md:text-7xl font-extrabold tracking-tight mb-6 leading-tight animate-text-glow">
                                 Shorten Links. <br />
                                 <span className="bg-linear-to-r from-violet-400 via-fuchsia-400 to-indigo-400 bg-clip-text text-transparent animate-linear">
                                     Expand Reach.
@@ -24,7 +24,7 @@ const Hero = () => {
                             </h1>
 
 
-                            <p className="text-slate-400 text-lg max-w-2xl mb-12 animate-float">
+                            <p className="text-slate-400 text-sm max-w-2xl mb-12 animate-float">
                                 The most aesthetic URL shortener on the internet. Transform messy links into clean, trackable assets in one click.
                             </p>
 

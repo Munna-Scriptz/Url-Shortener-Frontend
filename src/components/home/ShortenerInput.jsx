@@ -43,12 +43,12 @@ const ShortenerInput = () => {
                 <div className="absolute -inset-1 bg-linear-to-r from-violet-600 to-fuchsia-600 rounded-2xl opacity-20 blur group-hover:opacity-60 transition duration-500"></div>
 
                 <div className="relative flex flex-col md:flex-row items-center gap-2 p-2 rounded-2xl bg-slate-900 border border-white/10 shadow-2xl">
-                    <div className="flex-1 flex items-center px-4 h-14 w-full">
+                    <div className="flex-1 flex items-center px-4 w-full">
                         <Link className="text-slate-500 mr-3 group-focus-within:text-violet-400 transition-colors" size={20} />
                         <input
                             type="text"
-                            placeholder="Paste your insanely long URL here..."
-                            className="bg-transparent border-none outline-none text-white w-full placeholder-slate-600 h-full text-lg"
+                            placeholder="Paste your long URL here..."
+                            className="bg-transparent border-none outline-none text-white w-full placeholder-slate-600 h-12 md:h-full text-lg"
                             value={longUrl}
                             onChange={(e) => { setLongUrl(e.target.value), setErrorMessage('') }}
                         />
@@ -57,7 +57,7 @@ const ShortenerInput = () => {
                         variant='none'
                         onClick={handleShorten}
                         disabled={isLoading}
-                        className="w-full md:w-auto px-8 h-12 rounded-xl bg-white text-slate-950 font-bold hover:bg-slate-200 transition-colors flex items-center justify-center gap-2 relative"
+                        className="w-full md:w-auto h-12 rounded-xl bg-white text-slate-950 font-bold hover:bg-slate-200 transition-colors flex items-center justify-center gap-2 relative"
                     >
                         {isLoading ? (
                             <div className="w-5 h-5 border-2 border-slate-900 border-t-transparent rounded-full animate-spin"></div>
