@@ -52,7 +52,7 @@ const Navbar = () => {
                         >
                             <Scissors className="text-white" size={20} />
                         </div>
-                        <span className="bg-linear-to-r from-white to-slate-400 bg-clip-text text-transparent">SnipIt.</span>
+                        <span className="bg-linear-to-r from-white to-slate-400 bg-clip-text text-transparent">Rexurl</span>
                     </div>
                 </Link>
 

@@ -2,7 +2,7 @@ import axios from "axios"
 import { getCookie } from "../utils/Services";
 
 const api = axios.create({
-    baseURL: "http://localhost:8000/",
+    baseURL: "https://rexurl.vercel.app",
     withCredentials: true,
     headers: {
         "Content-Type": "application/json",

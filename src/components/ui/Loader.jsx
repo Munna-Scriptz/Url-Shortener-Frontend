@@ -56,7 +56,7 @@ const Loader = () => {
                     <span className="w-1 h-1 bg-indigo-500 rounded-full animate-bounce delay-200"></span>
                 </div>
                 <p className="text-[10px] text-slate-500 font-mono mt-2">
-                    Entering to SnipIt please wait // v2.0.4
+                    Entering to Rexurl please wait // v2.0.4
                 </p>
             </div>
 
